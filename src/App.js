@@ -1,26 +1,28 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
-import Sidebar from './Components/Sidebar/Sidebar';
+import Modal from './Components/Modal/Modal';
+import Nav from './Components/Nav/Nav';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.toggleSidebar = this.toggleSidebar.bind(this);
-
+    this.toggleModal = this.toggleModal.bind(this);
+    
     this.state = {
-      showSidebar: false
+      showModal: false
     }
   }
 
-  toggleSidebar() {
-    this.setState({showSidebar: !this.state.showSidebar})
+  toggleModal() {
+    this.setState({showModal: !this.state.showModal})
   }
 
   render() {return (
     <div className="App">
-      <Sidebar toggleSidebar={this.toggleSidebar}/>
+      <Nav />
+      <Modal toggleModal={this.toggleModal} modalBool={this.state.showModal}/>
     </div>
   )};
 }

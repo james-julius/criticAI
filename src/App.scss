@@ -2,9 +2,20 @@ $primaryColor: rgb(87, 255, 157);
 $secondaryColor: rgba(161, 161, 161, 0.931);
 $tertiaryColor: lightskyblue;
 $textColor: rgba(20,20,20,1);
+
+body {
+   margin: 0;
+   padding: 0;
+   border-spacing: border-box;
+   background-color: palevioletred;
+}
+
 .App {
   text-align: center;
   color: $textColor;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .App-logo {

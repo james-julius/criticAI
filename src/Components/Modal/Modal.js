@@ -13,9 +13,8 @@ class Modal extends React.Component {
 
     render() {
         return (
-            <div id="modal" style={{display: this.props.modalBool ? 'static': 'none'}}>
-                <span id="hamburgerIcon" onClick={this.handleClick} ></span>
-                {this.props.modalBool ? 'Surprise motherfuckers!': null}
+            <div id="modal">
+                'Surprise motherfuckers!
             </div>
         )
     }

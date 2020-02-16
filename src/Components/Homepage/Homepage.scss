@@ -1,0 +1,27 @@
+@import '../../Reference.scss';
+
+#homepage {
+    grid-area: main;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+      ), url('../../Resources/restaurantbg.jpg');
+    background-size: auto 100%;
+    background-position: center;
+    h1 {
+        width: 90%;
+        font-size: 1.4rem;
+        color: whitesmoke;
+    }
+    button {
+        width: auto;
+        height: 40px;
+        border-radius: 5px;
+        background-color: $primaryColor;
+        margin-top: 15px;
+    }
+}

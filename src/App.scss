@@ -1,21 +1,24 @@
-$primaryColor: rgb(87, 255, 157);
-$secondaryColor: rgba(161, 161, 161, 0.931);
-$tertiaryColor: lightskyblue;
-$textColor: rgba(20,20,20,1);
+@import '/Reference.scss';
 
 body {
+   height: 100%;
+   width: 100%;
    margin: 0;
    padding: 0;
    border-spacing: border-box;
-   background-color: palevioletred;
+   font-family: 'Roboto', sans-serif;
 }
 
 .App {
+  min-height: 100vh;
+  width: 100%;
   text-align: center;
   color: $textColor;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-rows: 50px 1fr;
+  grid-template-columns: 100%;
+  grid-template-areas: "nav"
+                       "main";
 }
 
 .App-logo {

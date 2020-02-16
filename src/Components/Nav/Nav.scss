@@ -1,11 +1,38 @@
-#nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 55px;
-    background-color: whitesmoke;
-    // ul {
+@import '../../Reference.scss';
 
-    // }
+#nav {
+    position: sticky;
+    display: inline-flex;
+    grid-area: nav;
+    background-color: $primaryColor;
+    ul {
+        flex-grow: 1;
+        display: inline-flex;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background-color: blue;
+      li {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+      #hamburger {
+           position: sticky;
+           height: 50px;
+           font-size: 2rem;
+           width: 50px;
+           background-color: $secondaryColor;
+           list-style-type: none;
+           cursor: pointer;
+       }
+       #title {
+           flex-grow: 1;
+           height: 100%;
+           min-width: 50px;
+           background-color: $primaryColor;
+           list-style-type: none;
+       }
+    }
 }

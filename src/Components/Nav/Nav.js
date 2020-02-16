@@ -1,5 +1,6 @@
 import React from 'react';
 import './Nav.scss';
+import Logo from '../../Resources/logo.png';
 
 class Nav extends React.Component {
     constructor(props) {
@@ -13,10 +14,7 @@ class Nav extends React.Component {
 
     render() {return (
         <div id ="nav">
-           <ul>
-             <li id="hamburger" onClick={this.handleClick}>|||</li>
-             <li id="title">AI Food Critic</li>
-           </ul>
+           <img src={Logo} alt="Welcome to RestaurantSelector" />
         </div>
     )}
 };

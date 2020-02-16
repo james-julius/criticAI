@@ -11,9 +11,9 @@ function Menu(props) {
 
     return (
         <div id="menu">
-            <button onClick ={handleClick} class={props.active ? 'hamburger hamburger--arrow is-active' : 'hamburger hamburger--arrow'} type="button">
-                <span class="hamburger-box">
-                    <span class="hamburger-inner"></span>
+            <button onClick ={handleClick} className={props.active ? 'hamburger hamburger--arrow is-active' : 'hamburger hamburger--arrow'} type="button">
+                <span className="hamburger-box">
+                    <span className="hamburger-inner"></span>
                 </span>
             </button>
         </div>

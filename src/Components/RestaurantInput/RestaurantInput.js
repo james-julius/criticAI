@@ -9,19 +9,30 @@ class RestaurantInput extends React.Component {
         }
         this.cuisineMapper = this.cuisineMapper.bind(this);
         this.cuisineCards = this.cuisineCards.bind(this);
+        this.addCuisine = this.addCuisine.bind(this);
+        this.removeCuisine = this.removeCuisine.bind(this);
+    }
+
+    addCuisine(cuisine) {
+        this.setState({cuisines: this.state.cuisines.push(cuisine)})
+    }
+
+    removeCuisine(cuisine) {
+        this.setState({cuisines: this.state.cuisines.filter(value => value !== cuisine)})
     }
 
     cuisineMapper() {
         let cuisinesOnOffer = ['Italian', 'French', 'Indian', 'Thai', 'Greek', 'Turkish', 'American', 'British', 'Japanese', 'Chinese'];
-        return cuisinesOnOffer.map((cuisine) => <option key={cuisine} value="cuisine">{cuisine}</option>);
+        return cuisinesOnOffer.map((cuisine) => <option key={cuisine} onChange={() => this.addCuisine(cuisine)} value="cuisine">{cuisine}</option>);
     }
+
     cuisineCards() {
         return (
         <div id="cuisineCards">
             {this.state.cuisines.map(cuisineChoice => 
             <div className="cuisineCard">
                 <h5>{cuisineChoice}</h5>
-                <span>X</span>
+                <span onClick={() => this.removeCuisine(cuisineChoice)}>X</span>
             </div>)}
         </div>
         )

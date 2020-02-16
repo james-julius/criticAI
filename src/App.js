@@ -5,6 +5,7 @@ import './App.scss';
 import Menu from './Components/Menu/Menu';
 import Nav from './Components/Nav/Nav';
 import Homepage from './Components/Homepage/Homepage';
+import RestaurantInput from './Components/RestaurantInput/RestaurantInput';
 
 class App extends React.Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class App extends React.Component {
     <div className="App">
       <Menu toggleMenu={this.toggleMenu} active={this.state.menuActive}/>
       <Nav colorState={this.state.flipColors} toggleModal={this.toggleModal}/>
-      <Homepage />
+      {this.state.menuActive ? <RestaurantInput /> : <Homepage getStarted={this.toggleMenu}/>}
       {/* {this.state.showModal ? <Modal toggleModal={this.toggleModal} modalBool={this.state.showModal}/> : null} */}
     </div>
   )};

@@ -14,24 +14,26 @@ class App extends React.Component {
     this.toggleMenu = this.toggleMenu.bind(this);
     this.state = {
       menuActive: false,
-      showModal: false
+      showModal: false,
+      flipColors: 0
     }
   }
 
   toggleMenu() {
     this.setState({menuActive: !this.state.menuActive})
+    this.state.flipColors === 0 ? this.setState({flipColors: 1}) : this.setState({flipColors: 0});
+    console.log('toggle toggle');
   }
 
   toggleModal() {
     const doesShow = this.state.showModal;
-    this.setState({showModal: !doesShow})
-    console.log('toggle toggle')
+    this.setState({showModal: !doesShow});
   }
 
   render() {return (
     <div className="App">
       <Menu toggleMenu={this.toggleMenu} active={this.state.menuActive}/>
-      <Nav  toggleModal={this.toggleModal}/>
+      <Nav colorState={this.state.flipColors} toggleModal={this.toggleModal}/>
       <Homepage />
       {/* {this.state.showModal ? <Modal toggleModal={this.toggleModal} modalBool={this.state.showModal}/> : null} */}
     </div>

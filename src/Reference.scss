@@ -1,6 +1,6 @@
 $primaryColor: rgb(240, 240, 240);
 $secondaryColor: rgba(240, 10, 10, 0.8);
-$tertiaryColor: lightskyblue;
+$tertiaryColor: rgba(20,20,20,.05);
 $textColor: rgba(20,20,20,1);
 
 @mixin flex($justify-content: center, $align-items: center, $flex-direction: row) {

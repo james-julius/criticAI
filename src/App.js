@@ -6,6 +6,7 @@ import Menu from './Components/Menu/Menu';
 import Nav from './Components/Nav/Nav';
 import Homepage from './Components/Homepage/Homepage';
 import RestaurantInput from './Components/RestaurantInput/RestaurantInput';
+import Restaurants from './Components/Restaurants/Restaurants';
 
 class App extends React.Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class App extends React.Component {
   toggleMenu() {
     this.setState({menuActive: !this.state.menuActive})
     this.state.flipColors === 0 ? this.setState({flipColors: 1}) : this.setState({flipColors: 0});
-    console.log('toggle toggle');
+    // console.log('toggle toggle');
   }
 
   toggleModal() {
@@ -35,7 +36,8 @@ class App extends React.Component {
     <div className="App">
       <Menu toggleMenu={this.toggleMenu} active={this.state.menuActive}/>
       <Nav colorState={this.state.flipColors} toggleModal={this.toggleModal}/>
-      {this.state.menuActive ? <RestaurantInput /> : <Homepage getStarted={this.toggleMenu}/>}
+      {/* {this.state.menuActive ? <RestaurantInput /> : <Homepage getStarted={this.toggleMenu}/>} */}
+      <Restaurants />
       {/* {this.state.showModal ? <Modal toggleModal={this.toggleModal} modalBool={this.state.showModal}/> : null} */}
     </div>
   )};

@@ -4,7 +4,6 @@
     grid-area: main;
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
     background-image: linear-gradient(
         rgba(0, 0, 0, 0.5),
@@ -14,8 +13,17 @@
     background-position: center;
     h1 {
         width: 90%;
+        font-size: 2rem;
+        color: $secondaryColor;
+        font-weight: 1000;
+        margin-top: 25vh;
+    }
+    h2 {
+        width: 90%;
+        // VV Have disabled h1 for now. disable this if re-activating
+        margin-top: 25vh;
         font-size: 1.4rem;
-        color: whitesmoke;
+        color: $primaryColor;
     }
     button {
         width: auto;

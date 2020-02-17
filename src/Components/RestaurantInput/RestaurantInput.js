@@ -5,7 +5,8 @@ class RestaurantInput extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            cuisines: ['Thai', 'Turkish']
+            availableCuisines: ['Italian', 'French', 'Indian', 'Thai', 'Greek', 'Turkish', 'American', 'British', 'Japanese', 'Chinese'],
+            cuisines: []
         }
         this.cuisineMapper = this.cuisineMapper.bind(this);
         this.cuisineCards = this.cuisineCards.bind(this);
@@ -13,17 +14,29 @@ class RestaurantInput extends React.Component {
         this.removeCuisine = this.removeCuisine.bind(this);
     }
 
-    addCuisine(cuisine) {
-        this.setState({cuisines: this.state.cuisines.push(cuisine)})
+    addCuisine(event) {
+        let tempCuisines = this.state.cuisines;
+        if (!tempCuisines.includes(event.target.value)) {
+            tempCuisines.push(event.target.value);
+            this.setState({cuisines: tempCuisines});
+            this.setState({availableCuisines: this.state.availableCuisines.filter(value => value !== event.target.value)});
+        }
     }
 
     removeCuisine(cuisine) {
-        this.setState({cuisines: this.state.cuisines.filter(value => value !== cuisine)})
+        if (!this.state.availableCuisines.includes(cuisine)) {
+            this.setState({cuisines: this.state.cuisines.filter(value => value !== cuisine)});
+            let tempCuisines = this.state.availableCuisines;
+            tempCuisines.push(cuisine);
+            this.setState({availableCuisines: tempCuisines});
+        }
     }
 
     cuisineMapper() {
-        let cuisinesOnOffer = ['Italian', 'French', 'Indian', 'Thai', 'Greek', 'Turkish', 'American', 'British', 'Japanese', 'Chinese'];
-        return cuisinesOnOffer.map((cuisine) => <option key={cuisine} onChange={() => this.addCuisine(cuisine)} value="cuisine">{cuisine}</option>);
+        let cuisines = this.state.availableCuisines;
+        // console.log('mapping the following availableCuisines array')
+        // console.log(this.state.availableCuisines);
+        return cuisines.map((cuisine) => <option key={cuisine} value={cuisine}>{cuisine}</option>);
     }
 
     cuisineCards() {
@@ -44,10 +57,12 @@ class RestaurantInput extends React.Component {
              <h3>What are your favourite restaurants?</h3>
                 <input type="text"/>
             <h3>Favourite cuisines?</h3>
-             <select>
+             <select onChange={this.addCuisine}>
+                 <option selected="selected" value="default">Select...</option>
                  {this.cuisineMapper()}
              </select>
              {this.cuisineCards()}
+             <button>Get Recommendations</button>
         </div>
         )
     }

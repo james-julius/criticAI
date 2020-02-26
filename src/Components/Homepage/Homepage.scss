@@ -32,5 +32,8 @@
         background-color: $primaryColor;
         border: 1px solid $textColor;
         margin-top: 15px;
+        &:hover {
+            background-color: rgba(240,240,240,.9);
+        }
     }
 }

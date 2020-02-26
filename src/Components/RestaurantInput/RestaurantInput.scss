@@ -41,5 +41,8 @@
         border: 1px solid $primaryColor;
         color: $primaryColor;
         margin-top: 15px;
+        &:hover {
+            background-color: rgba(251, 61, 61, 0.9);
+        }
     }
 }

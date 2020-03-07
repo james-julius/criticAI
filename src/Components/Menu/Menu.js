@@ -2,11 +2,8 @@ import React from 'react';
 import './Menu.scss';
 
 function Menu(props) {
-    // const [burgerActive, setBurgerActive] = useState(false);
-
     const handleClick = () => {
         props.toggleMenu();
-        // setBurgerActive(!burgerActive);
     }
 
     return (

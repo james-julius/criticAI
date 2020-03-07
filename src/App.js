@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.scss';
-import Modal from './Components/Modal/Modal';
-import Menu from './Components/Menu/Menu';
-import Nav from './Components/Nav/Nav';
-import Homepage from './Components/Homepage/Homepage';
-import RestaurantInput from './Components/RestaurantInput/RestaurantInput';
-import Restaurants from './Components/Restaurants/Restaurants';
+import './Master.scss';
+import { Switch, Route } from 'react-router-dom';
+import Homepage from './Pages/Homepage';
+import RestaurantInput from './Components/RestaurantInput';
+import Restaurants from './Components/Restaurants';
 import { useGlobalState } from './Hooks/useGlobalState';
 
 export default function App() {
@@ -20,12 +18,13 @@ export default function App() {
   }
 
     return (
-    <div className="App">
-      <Menu toggleMenu={toggleMenu} active={menuActive}/>
-      <Nav colorState={inverseColor} toggleModal={() => setShowModal(!showModal)}/>
-      {menuActive ? <RestaurantInput /> : <Homepage getStarted={toggleMenu}/>}
-      {/* <Restaurants /> */}
-      {/* {showModal ? <Modal toggleModal={toggleModal} modalBool={showModal}/> : null} */}
-    </div>
+    <Switch>
+      <Route exact path="/" component={Homepage}/>
+      <Route exact path="/restaurant-input" component={RestaurantInput}/>
+      <Route exact path="/restaurants" component={Restaurants}/>
+    </Switch>
+      // <Nav colorState={inverseColor} toggleModal={() => setShowModal(!showModal)}/>
+      // {/* {showModal ? <Modal toggleModal={toggleModal} modalBool={showModal}/> : null} */}
+    // </div>
   );
 }

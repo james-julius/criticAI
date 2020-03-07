@@ -1,6 +1,6 @@
 import React from 'react';
-import './RestaurantCard.scss';
-import SomSaa from './somsaa.jpg';
+import '../Master.scss';
+import SomSaa from '../Resources/Assets/somsaa.jpg';
 
 const RestaurantCard = (props) => {
     return (

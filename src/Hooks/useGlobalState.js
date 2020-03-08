@@ -4,7 +4,9 @@ const { useGlobalState } = createGlobalState({
     'currentPage': '/',
     'showModal': false,
     'menuActive': false,
-    'inverseColor': false
+    'inverseColor': false, 
+    'user': false,
+    'redirect': null
 });
 
 export { useGlobalState };

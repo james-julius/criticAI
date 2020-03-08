@@ -1,5 +1,5 @@
 import React from 'react';
-import RestaurantCard from './RestaurantCard';
+import RestaurantCard from '../Components/RestaurantCard';
 import Menu from '../Components/Menu';
 import Nav from '../Components/Nav';
 import '../Master.scss';

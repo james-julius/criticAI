@@ -5,6 +5,9 @@ import SomSaa from '../Resources/Assets/somsaa.jpg';
 const RestaurantCard = (props) => {
     return (
         <div className="restaurantCard">
+            <div id="favouriteIcon">
+                
+            </div>
             <img src={SomSaa} alt="picture of restaurant"/>
             <h2>1.</h2>
             <span className="accentcol"></span>

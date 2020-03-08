@@ -15,7 +15,7 @@ export default function Homepage() {
             <Menu active={menuActive}/>
             <Nav colorState={inverseColor} toggleModal={() => setShowModal(!showModal)}/>
             <div id="home">
-                {/* <h1>CriticAI</h1> */}
+                <img alt="criticAI" height="200" width="200" src={'../Resources/Assets/logo.png'}/>
                 <h2>Discover new restaurants. <br/><br/> Tell us your favourites and we'll give you personalised recommendations.</h2>
                 <Link to="/restaurant-input">
                     <button>Get Started</button>

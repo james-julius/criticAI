@@ -1,25 +1,118 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../Master.scss';
 import { useGlobalState } from '../Hooks/useGlobalState';
+import { Redirect } from 'react-router-dom';
+import useKeyPress from '../Hooks/useKeyPress';
+import userAPI from '../API/User';
 
 function Menu() {
     const [menuActive, setMenuActive] = useGlobalState('menuActive');
-    const [inverseColors, setInverseColors] = useGlobalState('inverseColor');
+    const [user, setUser] = useGlobalState('user');
+    const [login, setLogin] = useState(false);
+    const [createAccount, setCreateAccount] = useState(false);
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [usernameTwo, setUsernameTwo] = useState('');
+    const [passwordTwo, setPasswordTwo] = useState('');
+    const enterKeyPress = useKeyPress('Enter');
+    const [redirect, setRedirect] = useGlobalState('redirect');
+    const [failedLogin, setFailedLogin] = useState(false);
+    const [userRegistered, setUserRegistered] = useState(false);
 
-    function clickHandler() {
-        setMenuActive(!menuActive); 
-        setInverseColors(!inverseColors)
+    const loginHandler = () => {
+        console.log('logging in')
+    }
+
+    const register = async () => {
+        console.log('registering user');
+        // Verification of valid signup data
+        if (username === usernameTwo && password === passwordTwo && password.length > 8) {
+            setFailedLogin(false);
+            setUserRegistered(true);
+        const registration = await userAPI.register();
+        } else {
+            setFailedLogin(true)
+        }
+    }
+
+    const signOut = async () => {
+        console.log('signing out user')
+        const loggedOut = await userAPI.signout();
+        setMenuActive(false);
+        setRedirect('/');
+        // if (loggedOut) {
+        // }
+
+    }
+
+    const handleSignup= async () => {
+        const registration = userAPI.register({identifier: username, password: password});
+
+    }
+
+    // Initiate login if a user presses enter
+    useEffect(() => {
+        if (enterKeyPress) {loginHandler()}
+    }, [enterKeyPress])
+
+    useEffect(() => {
+        return () => {setRedirect(null)}
+    }, [])
+
+    // Navigations
+    if (redirect) {
+        let url = redirect;
+        return <Redirect to={url} />
     }
 
     return (
-        <div id="menu">
-            <button onClick={clickHandler} className={menuActive ? 'hamburger hamburger--arrow is-active' : 'hamburger hamburger--arrow'} type="button">
-                <span className="hamburger-box">
-                    <span className="hamburger-inner"></span>
-                </span>
-            </button>
+        <div id="menu-modal" style={{display: menuActive ? 'grid' : 'none'}}>
+            {menuActive ? <>
+                {user ? <>
+                <div id="menu-options">
+                    <button>View Favourites</button>
+                    <button>Account Details</button>
+                    <button onClick={signOut}>Sign Out</button>
+                </div>
+                </> : <>
+                    <div id="menu-options">
+                        <div id="loginForm">
+                            <span className="input-container">
+                                <h5>Email:</h5>
+                                <input value={username} placeholder="miranda@gmail.com" onChange={event => setUsername(event.target.value)} type="email"/>
+                            </span>
+
+                            {/* Extra email for account creation */}
+                            {createAccount ? <>
+                            <span className="input-container">
+                                <h5>And again:</h5>
+                                <input value={usernameTwo} placeholder="miranda@gmail.com" onChange={event => setUsernameTwo(event.target.value)} type="email"/>
+                            </span>
+                            </>: null}
+
+                            <span className="input-container">
+                                <h5>Password:</h5>
+                                <input value={password} onChange={event => setPassword(event.target.value)}  type="password"/>
+                            </span>
+
+                            {/* Extra password for account creation */}
+                            {createAccount ? <>
+                            <span className="input-container">
+                                <h5>And again:</h5>
+                                <input value={passwordTwo} onChange={event => setPasswordTwo(event.target.value)}  type="password"/>
+                                <p>{(passwordTwo && (password != passwordTwo)) ? "Your passwords do not match!": null}</p>
+                            </span>
+                            </> : null }
+                        </div>
+                        { !createAccount ? <>
+                             <button onClick={() => setLogin(true)}>Log In</button>
+                             <button onClick={() => setCreateAccount(true)}>Create Account</button>
+                        </> :<button onClick={handleSignup}>Submit</button>}
+                    </div>
+                </>}
+            </> : null }
         </div>
     )
-}
+} 
 
 export default Menu;

@@ -2,6 +2,7 @@
 
 $primaryColor: rgb(240, 240, 240);
 $secondaryColor: rgba(240, 10, 10, 0.8);
+$secondaryColorOverlay: rgba(240, 10, 10, 0.95);
 $tertiaryColor: rgba(20,20,20,.05);
 $textColor: rgba(20,20,20,1);
 // FUNCTIONS
@@ -25,6 +26,11 @@ body {
     border-spacing: border-box;
     font-family: 'Roboto', sans-serif;
  }
+
+ h5 {
+    font-size: 14px;
+    color: $primaryColor;
+ }
  
  .App {
    min-height: 100vh;
@@ -36,7 +42,6 @@ body {
    grid-template-columns: 100%;
    grid-template-areas: "nav"
                         "main";
- }
  
  .App-logo {
    height: 40vmin;
@@ -61,13 +66,14 @@ body {
  }
  
  @keyframes App-logo-spin {
-   from {
-     transform: rotate(0deg);
-   }
-   to {
-     transform: rotate(360deg);
-   }
- }
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+}
 
 
 // PAGE STYLING:
@@ -88,12 +94,12 @@ body {
         font-size: 2rem;
         color: $secondaryColor;
         font-weight: 1000;
-        margin-top: 25vh;
+        margin-top: 20vh;
     }
     h2 {
         width: 90%;
         // VV Have disabled h1 for now. disable this if re-activating
-        margin-top: 25vh;
+        // margin-top: 25vh;
         font-size: 1.4rem;
         color: $primaryColor;
     }
@@ -194,6 +200,7 @@ body {
             align-items: center;
             justify-content: center;
             grid-area: cta;
+            color: white;
         }
     }
 }
@@ -247,8 +254,7 @@ body {
 
 
 // COMPONENT Styling
-
-#menu {
+#menubutton {
     position: absolute;
     top: 0;
     left: 0;
@@ -268,19 +274,59 @@ body {
     justify-items: center;
     grid-area: nav;
     background-color: $primaryColor;
-    img {
+    #logolink {
         margin: auto;
         height: 45px;
         width: 45px;
+        cursor: pointer;
+        img {
+            height: 100%;
+            width: 100%;
+        }
     }
 }
 
-#modal {
-    display: flex;
-    background-color: purple;
-    margin-top: 55px;
-    height: 90vh;
-    width: 90vw;
+#menu-modal {
+    border-top: 2px solid $primaryColor;
+    background-color: $secondaryColorOverlay;
+    flex-grow: 1;
+    grid-area: main;
+    z-index: 2;
+    justify-content: center;
+    align-content: flex-start;
+    #menu-options {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 3vh;
+        button {
+            width: 140px;
+            height: 40px;
+            border-radius: 5px;
+            background-color: $primaryColor;
+            border: 1px solid $secondaryColor;
+            color: $secondaryColor;
+            margin-top: 15px;
+            &:hover {
+                background-color: rgba(251, 61, 61, 0.9);
+            }
+        }
+        .input-container {
+            text-align: left;
+            input {
+                margin-top: 0px;
+                border-radius: 5px;
+                border: 2px solid $secondaryColor;
+                padding: 2px 5px;
+                color: $secondaryColor;
+            }
+            h5 {
+                margin-top: 5px;
+                margin-bottom: 2px;
+            }
+        }
+    }
 }
 
 #hamburgerIcon {

@@ -3,8 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Master.scss';
 import { Switch, Route } from 'react-router-dom';
 import Homepage from './Pages/Homepage';
-import RestaurantInput from './Components/RestaurantInput';
-import Restaurants from './Components/Restaurants';
+import RestaurantInput from './Pages/RestaurantInput';
+import Restaurants from './Pages/Restaurants';
 import { useGlobalState } from './Hooks/useGlobalState';
 
 export default function App() {

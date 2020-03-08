@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 
 
 export default function useKeyPress(targetKey) {
-        console.log(targetKey)
-        console.log('calling')
+        // console.log(targetKey)
+        // console.log('calling')
         const [keyPressed, setKeyPressed] = useState(false);
 
         function downHandler( {key} ) {

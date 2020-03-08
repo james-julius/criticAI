@@ -17,21 +17,34 @@ function Menu() {
     const enterKeyPress = useKeyPress('Enter');
     const [redirect, setRedirect] = useGlobalState('redirect');
     const [failedLogin, setFailedLogin] = useState(false);
+    const [failedRegistration, setFailedRegistration] = useState(false);
     const [userRegistered, setUserRegistered] = useState(false);
+    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-    const loginHandler = () => {
+    const loginHandler = async () => {
+        if (username && password) {
+            const login = await userAPI.login({identifier: username, password: password});
+            if (login) {
+                setRedirect('/')
+            }
+            else {setFailedLogin(true)}
+        }
         console.log('logging in')
     }
 
     const register = async () => {
-        console.log('registering user');
         // Verification of valid signup data
-        if (username === usernameTwo && password === passwordTwo && password.length > 8) {
-            setFailedLogin(false);
+        if ((username) && username === usernameTwo && (password) && password === passwordTwo && password.length >= 8) {
+            console.log('registering user');
+            setFailedRegistration(false);
             setUserRegistered(true);
-        const registration = await userAPI.register();
+            const registration = await userAPI.register({'email': username, 'password': password});
+            if (registration) {
+                setUserRegistered(true)
+            }
         } else {
-            setFailedLogin(true)
+            console.log('failed registration checks')
+            setFailedRegistration(true)
         }
     }
 
@@ -42,11 +55,6 @@ function Menu() {
         setRedirect('/');
         // if (loggedOut) {
         // }
-
-    }
-
-    const handleSignup= async () => {
-        const registration = userAPI.register({identifier: username, password: password});
 
     }
 
@@ -87,11 +95,13 @@ function Menu() {
                             <span className="input-container">
                                 <h5>And again:</h5>
                                 <input value={usernameTwo} placeholder="miranda@gmail.com" onChange={event => setUsernameTwo(event.target.value)} type="email"/>
+                                {(usernameTwo && (username != usernameTwo)) ? <p>Your emails do not match!</p> : null}
+                                {(failedRegistration && (!emailRegex.test(username))) ? <p>"Please enter a valid email."</p> : null}
                             </span>
                             </>: null}
 
                             <span className="input-container">
-                                <h5>Password:</h5>
+                                <h5>Password: {createAccount ? '(min 8 characters)' : null}</h5>
                                 <input value={password} onChange={event => setPassword(event.target.value)}  type="password"/>
                             </span>
 
@@ -100,14 +110,16 @@ function Menu() {
                             <span className="input-container">
                                 <h5>And again:</h5>
                                 <input value={passwordTwo} onChange={event => setPasswordTwo(event.target.value)}  type="password"/>
-                                <p>{(passwordTwo && (password != passwordTwo)) ? "Your passwords do not match!": null}</p>
+                                {(passwordTwo && (password != passwordTwo)) ? <p> "Your passwords do not match!"</p> : null}
+                                {(failedRegistration && (password.length < 8)) ? <p>Please enter 8 characters.</p> : null}
                             </span>
                             </> : null }
                         </div>
                         { !createAccount ? <>
                              <button onClick={() => setLogin(true)}>Log In</button>
                              <button onClick={() => setCreateAccount(true)}>Create Account</button>
-                        </> :<button onClick={handleSignup}>Submit</button>}
+                        </> :<button onClick={register}>Submit</button>}
+                        {failedLogin ? <h5>Your login was unsuccessful. Please try again.</h5> : null}
                     </div>
                 </>}
             </> : null }

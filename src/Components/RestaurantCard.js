@@ -1,12 +1,15 @@
 import React from 'react';
 import '../Master.scss';
 import SomSaa from '../Resources/Assets/somsaa.jpg';
+import fullHeart from '../Resources/Assets/fullHeart.png';
+import transparentHeart from '../Resources/Assets/transparentHeart.png';
 
 const RestaurantCard = (props) => {
+    
     return (
         <div className="restaurantCard">
             <div id="favouriteIcon">
-                
+                {props.isFavourite ? <img src={fullHeart} alt="A full heart"/> : <img src={transparentHeart} alt="A transparent heart"/>}
             </div>
             <img src={SomSaa} alt="picture of restaurant"/>
             <h2>1.</h2>

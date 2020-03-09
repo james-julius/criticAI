@@ -1,19 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import RestaurantCard from '../Components/RestaurantCard';
 import Menu from '../Components/Menu';
 import Nav from '../Components/Nav';
 import '../Master.scss';
 
-class Restaurants extends React.Component {
-    render() {return (
+export default function Restaurants() {
+    const [favourites, setFavourites] = useState([]);
+
+    return (
         <div className="App">
             <Menu/>
             <Nav/>
             <div id="Restaurants">
-                <RestaurantCard />
+                <RestaurantCard  isFavourite={true}/>
             </div>
         </div>
-    )}
+    )
 }
-
-export default Restaurants;

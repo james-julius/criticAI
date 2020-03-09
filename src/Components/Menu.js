@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import '../Master.scss';
 import { useGlobalState } from '../Hooks/useGlobalState';
 import { Redirect } from 'react-router-dom';
 import useKeyPress from '../Hooks/useKeyPress';
 import userAPI from '../API/User';
+import '../Master.scss';
 
 function Menu() {
     const [menuActive, setMenuActive] = useGlobalState('menuActive');
@@ -125,6 +125,6 @@ function Menu() {
             </> : null }
         </div>
     )
-} 
+}
 
 export default Menu;
